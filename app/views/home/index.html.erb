@@ -483,8 +483,7 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                 dir="ltr" id="source" name=
                                                 "text" spellcheck="false"
                                                 style="box-sizing: border-box; overflow-y: hidden; overflow-x: auto; padding-right: 20px;"
-                                                tabindex="0" wrap="SOFT">
-</textarea>
+                                                tabindex="0" wrap="SOFT"><% if @question %><%= @question.text %><% end %></textarea>
 
                                                 <div class=
                                                 "clear-button goog-toolbar-button"
@@ -704,7 +703,7 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                         "result_box">
                                                         <% if @question %>
                                                           <% @question.answers.each do |answer| %>
-                                                            <% if answer.right? %>
+                                                            <% if answer.right  == 't' %>
                                                               <span class="hps" style="color:red"><%= answer.text %></span>
                                                             <% else %>
                                                               <span class="hps"><%= answer.text %></span>

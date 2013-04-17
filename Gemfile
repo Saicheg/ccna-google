@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'arel'
+gem 'nokogiri'
 
 group :development do
   gem 'pry-rails'
