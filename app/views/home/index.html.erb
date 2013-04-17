@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%= csrf_meta_tags %>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <link href="http://ssl.gstatic.com/" rel="dns-prefetch">
     <link href="http://csi.gstatic.com/" rel="dns-prefetch">
@@ -697,9 +698,22 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                         "display:none">
                                                             <audio id=
                                                             "tts"></audio>
-                                                        </div><span class=
+                                                            </div>
+                                                      <span class=
                                                         "short_text" id=
-                                                        "result_box"></span>
+                                                        "result_box">
+                                                        <% if @question %>
+                                                          <% @question.answers.each do |answer| %>
+                                                            <% if answer.right? %>
+                                                              <span class="hps" style="color:red"><%= answer.text %></span>
+                                                            <% else %>
+                                                              <span class="hps"><%= answer.text %></span>
+                                                            <% end %>
+                                                            <br/>
+                                                          <% end %>
+                                                        <% end %>
+
+                                                      </span>
                                                     </div>
                                                 </div>
 
