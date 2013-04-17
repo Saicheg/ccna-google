@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'arel'
 gem 'nokogiri'
 gem 'pg'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'sqlite3'
@@ -45,3 +46,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+
+gem "devise"
