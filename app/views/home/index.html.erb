@@ -703,7 +703,7 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                         "result_box">
                                                         <% if @question %>
                                                           <% @question.answers.each do |answer| %>
-                                                            <span class="hps"><% if answer.right? %>*<% end %><%= answer.text %></span>
+                                                            <span class="hps"><% if answer.correct? %>*<% end %><%= answer.text %></span>
                                                             <br/>
                                                           <% end %>
                                                         <% end %>

@@ -20,7 +20,7 @@ namespace :parse do
 
       question = Question.new(text: text)
       answers.each do |answer_text|
-        question.answers << Answer.new(text: answer_text, right: right_answers.include?(answer_text))
+        question.answers << Answer.new(text: answer_text, correct: right_answers.include?(answer_text))
       end
       question.save
     end
@@ -33,7 +33,7 @@ namespace :parse do
 
       question = Question.new(text: text)
       answers.each do |answer_text|
-        question.answers << Answer.new(text: answer_text, right: right_answers.include?(answer_text))
+        question.answers << Answer.new(text: answer_text, correct: right_answers.include?(answer_text))
       end
       question.save
     end

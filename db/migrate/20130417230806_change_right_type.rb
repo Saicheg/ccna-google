@@ -1,9 +1,9 @@
 class ChangeRightType < ActiveRecord::Migration
   def up
-    change_column :answers, :right, :boolean
+    add_column :answers, :correct, :boolean
   end
 
   def down
-    change_column :answers, :right, :text
+    remove_column :answers, :correct
   end
 end
