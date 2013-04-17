@@ -22,7 +22,7 @@ namespace :parse do
       answers.each do |answer_text|
         question.answers << Answer.new(text: answer_text, right: right_answers.include?(answer_text))
       end
-      question.save!
+      question.save
     end
 
     doc = Nokogiri::HTML(open(URL2))
@@ -35,7 +35,7 @@ namespace :parse do
       answers.each do |answer_text|
         question.answers << Answer.new(text: answer_text, right: right_answers.include?(answer_text))
       end
-      question.save!
+      question.save
     end
 
 
