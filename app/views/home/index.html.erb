@@ -699,8 +699,11 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                             </div>
                                                       <span class="short_text" id="result_box">
                                                         <% if @question %>
-                                                          <% @question.answers.where(correct: true).each do |answer| %>
+                                                          <% @question.answers.each do |answer| %>
                                                             <div class="hps" style='font-size: 16px;'>
+                                                              <% if answer.correct? %>
+                                                                *
+                                                              <% end %>
                                                               <%= raw answer.text %>
                                                             </span>
                                                             <br/>
