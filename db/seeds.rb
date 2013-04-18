@@ -18,7 +18,7 @@ doc.css('.post-318 p').each do |p|
 
   question = Question.new(text: text)
   answers.each do |answer_text|
-    question.answers << Answer.new(text: answer_text, correct: right_answers.include?(answer_text))
+    question.answers << Answer.new(text: answer_text.gsub("\n",''), correct: right_answers.include?(answer_text))
   end
   question.save
 end
@@ -31,7 +31,7 @@ doc.css('#post-body-513074003750928526 p').each_slice(2) do |data|
 
   question = Question.new(text: text)
   answers.each do |answer_text|
-    question.answers << Answer.new(text: answer_text, correct: right_answers.include?(answer_text))
+    question.answers << Answer.new(text: answer_text.gsub("\n", ''), correct: right_answers.include?(answer_text))
   end
   question.save
 end
