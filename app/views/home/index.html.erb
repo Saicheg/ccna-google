@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <%= csrf_meta_tags %>
@@ -698,16 +697,8 @@ MSG_AD_QUERY='';MSG_ALPHA_DESC='This language is still in early stages of develo
                                                             <audio id=
                                                             "tts"></audio>
                                                             </div>
-                                                      <span class=
-                                                        "short_text" id=
-                                                        "result_box">
-                                                        <% if @question %>
-                                                          <% @question.answers.each do |answer| %>
-                                                            <span class="hps" style='font-size: 16px'><%= raw answer.text %><% if answer.correct? %>*<% end %></span>
-                                                            <br/>
-                                                          <% end %>
-                                                        <% end %>
-
+                                                      <span class="short_text" id="result_box">
+                                                        <% if @question %><% @question.answers.each do |answer| %><span class="hps" style='font-size: 16px'><%= raw answer.text %><% if answer.correct? %><%= raw '*' %><% end %></span><br/><% end %><% end %>
                                                       </span>
                                                     </div>
                                                 </div>
