@@ -16,9 +16,12 @@ doc.css('.post-318 p').each do |p|
   answers = all.split("\n").reject{|t| t == text}
   right_answers = p.css('span').map{|el| el.text}
 
+  puts anwers
+
   question = Question.create(text: text)
   answers.each do |answer_text|
-    Answer.create(text: answer_text, correct: right_answers.include?(answer_text), question_id: question.id)
+    correct = !!right_answers.include?(answer_text)
+    Answer.create(text: answer_text, correct: correct, question_id: question.id)
   end
 end
 
@@ -29,9 +32,11 @@ doc.css('#post-body-513074003750928526 p').each_slice(2) do |data|
   right_answers = data.last.css('strong').map{|x| x.text.strip}.flat_map{|x| x.split("\n")}
 
   puts text
+  puts anwers
 
   question = Question.create(text: text)
   answers.each do |answer_text|
-    Answer.create(text: answer_text, correct: right_answers.include?(answer_text), question_id: question.id)
+    correct = !!right_answers.include?(answer_text)
+    Answer.create(text: answer_text, correct: correct , question_id: question.id)
   end
 end
