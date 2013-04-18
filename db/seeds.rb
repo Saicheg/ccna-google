@@ -19,7 +19,6 @@ doc.css('.post-318 p').each do |p|
 
   puts answers
 
-
   question = Question.create(text: text)
   answers.each do |answer_text|
     correct = !!right_answers.include?(answer_text)
@@ -29,6 +28,8 @@ end
 
 doc = Nokogiri::HTML(open(URL2))
 doc.css('#post-body-513074003750928526 p').each_slice(2) do |data|
+  data = data.map {|p| Nokogiri::HTML(p.to_html.gsub(/<br>/, "\n"))}
+
   text = data.first.text
   answers = data.last.text.split("\n").map(&:strip)
   right_answers = data.last.css('strong').map{|x| x.text.strip}.flat_map{|x| x.split("\n")}
