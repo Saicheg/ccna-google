@@ -16,7 +16,7 @@ doc.css('.post-318 p').each do |p|
   answers = all.split("\n").reject{|t| t == text}
   right_answers = p.css('span').map{|el| el.text}
 
-  puts anwers
+  puts answers
 
   question = Question.create(text: text)
   answers.each do |answer_text|
@@ -32,7 +32,7 @@ doc.css('#post-body-513074003750928526 p').each_slice(2) do |data|
   right_answers = data.last.css('strong').map{|x| x.text.strip}.flat_map{|x| x.split("\n")}
 
   puts text
-  puts anwers
+  puts answers
 
   question = Question.create(text: text)
   answers.each do |answer_text|
