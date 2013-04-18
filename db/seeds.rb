@@ -11,12 +11,14 @@ URL2 = 'https://dl.dropboxusercontent.com/u/12488517/ccna.html'
 
 doc = Nokogiri::HTML(open(URL1))
 doc.css('.post-318 p').each do |p|
-  puts p.text
-
+  p = Nokogiri::HTML(p.to_html.gsub(/<br>/, "\n"))
   text = p.css('strong').text.gsub(/\A[^a-zA-z]*/, '')
   all = p.text.gsub(/\A[^a-zA-z]*/, '')
-  answers = all.split("\n").reject{|t| t == text}
+  answers = all.split("\n").reject{|t| t == text}.reject(&:blank?)
   right_answers = p.css('span').map{|el| el.text}
+
+  puts answers
+
 
   question = Question.create(text: text)
   answers.each do |answer_text|
