@@ -14,8 +14,8 @@ doc.css('.post-318 p').each do |p|
   p = Nokogiri::HTML(p.to_html.gsub(/<br>/, "\n"))
   text = p.css('strong').text.gsub(/\A[^a-zA-z]*/, '')
   all = p.text.gsub(/\A[^a-zA-z]*/, '')
-  answers = all.split("\n").reject{|t| t == text}.reject(&:blank?)
-  right_answers = p.css('span').map{|el| el.text}
+  answers = all.split("\n").reject{|t| t == text}.reject(&:blank?).map{|a| a.gsub("\n", '')}
+  right_answers = p.css('span').map{|el| el.text}.map{|a| a.gsub("\n", '')}
 
   puts answers
 
@@ -31,8 +31,8 @@ doc.css('#post-body-513074003750928526 p').each_slice(2) do |data|
   data = data.map {|p| Nokogiri::HTML(p.to_html.gsub(/<br>/, "\n"))}
 
   text = data.first.text
-  answers = data.last.text.split("\n").map(&:strip)
-  right_answers = data.last.css('strong').map{|x| x.text.strip}.flat_map{|x| x.split("\n")}
+  answers = data.last.text.split("\n").map(&:strip).map{|a| a.gsub("\n", '')}
+  right_answers = data.last.css('strong').map{|x| x.text.strip}.flat_map{|x| x.split("\n")}.map{|a| a.gsub("\n", '')}
 
   question = Question.create(text: text)
   answers.each do |answer_text|
