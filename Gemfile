@@ -9,6 +9,7 @@ gem 'arel'
 gem 'nokogiri'
 gem 'pg'
 gem 'rails_admin'
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3'
