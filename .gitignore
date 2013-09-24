@@ -21,3 +21,4 @@ coverage
 zeus.json
 chromedriver.log
 .sass-cache/
+db/*.sqllite3
