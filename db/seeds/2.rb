@@ -10,7 +10,7 @@ URLS.each do |url, num|
     answers, right_answers = [], []
 
     q = p.css('strong:first-child')
-    text = q.text.gsub(/\n/,'').gsub(/\A[0-9]*\.\s*/,'')
+    question_text = q.text.gsub(/\n/,'').gsub(/\A[0-9]*\.\s*/,'')
     answers_elem = p.to_s.gsub(q.to_s, '')
 
     Nokogiri::HTML(answers_elem.gsub(/<br>/, "")).css('p').children.each do |elem|
@@ -27,13 +27,14 @@ URLS.each do |url, num|
     right_answers.map!{|answer| answer.gsub("\n", '')}.reject!(&:blank?)
 
     puts '*' * 80
+    puts "<#{question_text}>"
     answers.each do |answer|
       print '*' if right_answers.include?(answer)
       puts answer
     end
     puts '*' * 80
 
-    question = Question.create(text: text)
+    question = Question.create(text: question_text)
     answers.each do |answer_text|
       correct = !!right_answers.include?(answer_text)
       Answer.create(text: answer_text, correct: correct, question_id: question.id)
